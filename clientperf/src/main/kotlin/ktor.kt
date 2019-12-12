@@ -11,8 +11,6 @@ const val BASE_URL = "http://localhost:5003"
 
 fun main(args: Array<String>) {
     runBlocking {
-
-
         statusCode(10)
         System.gc()
         println("===================")

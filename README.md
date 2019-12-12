@@ -12,6 +12,22 @@
 | read 10,000 medium-sized responses from same endpoint | 0ms | 0ms | 0ms |
 | read 100,000 medium-sized responses from same endpoint | 0ms | 0ms | 0ms |
 
+**Background**
+
+The goal is to reduce thread usage in the typical android app. A typical android app has 50-100 threads allocated at a given time. If yes, can we see performance improvements? 
+
+I asked this question on the kotlin slack
+
+> Dispatchers.IO defaults to being backed by an executor that can spawn up to 64 threads. Is it possible to architect an app with suspending non-blocking IO calls and we'd just use one thread for the IO dispatcher?
+>
+> Is it a reasonable expectation that migrating to coroutines+flow from rx will reduce the total number of threads an android application uses? This is the high-level question I am trying to answer.
+
+Then stumbled upon this comment by Roman Elizarov
+
+> If you are using a library that provides asynchronous IO via NIO (like ktor.io for example), then you would not need withContext at all, since all your IO functions will be non-blocking. You need to use Dispatchers.IO only if you have blocking IO functions that you must to use without blocking.
+
+Jesse Wilson suggested performance testing ktor vs okhttp.
+
 **Hypothesis 1**
 
 Using the ktor client configured to a single thread should have similar performance to using okhttp launching a thread for each request.
@@ -28,7 +44,7 @@ The number of running threads -- ceteris paribus -- should be lower in an applic
 
 -The mechanism for determining when 10 concurrent requests are complete is different in each experiment. The performance of CountDownLatch vs List<Deferred>:awaitAll() could have a significant impact. We should try to find a way to use the same mechanism for each test set.
 
--Running into an error at 100_000 concurrent requests for ktor
+-Running into an error at 100_000 concurrent requests for ktor. Need to dig into to see if we are using the library wrong or its a bug.
 
 -Measurements are not guaranteed to include garbage collection
 
