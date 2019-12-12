@@ -16,13 +16,13 @@
 
 The goal is to reduce thread usage in the typical android app. A typical android app has 50-100 threads allocated at a given time. If yes, can we see performance improvements? 
 
-I asked this question on the kotlin slack
+Asked on the Kotlin Lang slack (https://kotlinlang.slack.com/archives/C0B8M7BUY/p1575401896314500):
 
 > Dispatchers.IO defaults to being backed by an executor that can spawn up to 64 threads. Is it possible to architect an app with suspending non-blocking IO calls and we'd just use one thread for the IO dispatcher?
 >
 > Is it a reasonable expectation that migrating to coroutines+flow from rx will reduce the total number of threads an android application uses? This is the high-level question I am trying to answer.
 
-Then stumbled upon this comment by Roman Elizarov
+Stumbled upon this comment by Roman Elizarov
 
 > If you are using a library that provides asynchronous IO via NIO (like ktor.io for example), then you would not need withContext at all, since all your IO functions will be non-blocking. You need to use Dispatchers.IO only if you have blocking IO functions that you must to use without blocking.
 
