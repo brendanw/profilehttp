@@ -1,16 +1,21 @@
 **Initial Results**
 
+-1ms is unpopulated data
+
 | Tests | okhttp | ktor numThreads=8 | ktor numThreads=1 |
 | :---         |     :---:      |          :---: |          :---: |
-| client init   | 0ms     | 0ms    | 0ms |
-| init client + 10 status code requests     | 0ms       | 0ms      | 0ms |
-| pre-initialized client + 10 status code requests | 0ms | 0ms | 0ms |
-| read 1 medium-sized responses from same endpoint | 0ms | 0ms | 0ms |
-| read 10 medium-sized responses from same endpoint | 0ms | 0ms | 0ms |
-| read 100 medium-sized responses from same endpoint | 0ms | 0ms |  0ms |
-| read 1,000 medium-sized responses from same endpoint | 0ms | 0ms | 0ms |
-| read 10,000 medium-sized responses from same endpoint | 0ms | 0ms | 0ms |
-| read 100,000 medium-sized responses from same endpoint | 0ms | 0ms | 0ms |
+| client init   | -1ms     | -1ms    | -1ms |
+| init client + 10 status code requests     | 676 ms       | -1ms      | -1ms |
+| pre-initialized client + 10 status code requests | 8ms | -1ms | -1ms |
+| read 1 medium-sized responses from same endpoint | -1ms | -1ms | -1ms |
+| read 10 medium-sized responses from same endpoint | 14ms | -1ms | -1ms |
+| read 100 medium-sized responses from same endpoint | 78ms | -1ms |  -1ms |
+| read 1,000 medium-sized responses from same endpoint | 284ms | -1ms | -1ms |
+| read 10,000 medium-sized responses from same endpoint | 1967ms | -1ms | -1ms |
+| read 100,000 medium-sized responses from same endpoint | -1ms | -1ms | -1ms |
+
+**Run the tests**
+If on mac you'll need gradle `brew install gradle`
 
 **Background**
 

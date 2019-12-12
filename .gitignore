@@ -1,5 +1,5 @@
 .idea/
-testserver/.gradle/
-clientperf/.gradle/
-clientperf/build/
-testserver/build/
+server/.gradle/
+client/.gradle/
+client/build/
+server/build/
