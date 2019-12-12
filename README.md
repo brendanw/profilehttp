@@ -14,7 +14,15 @@
 | read 100,000 medium-sized responses from same endpoint |   |   |   |
 
 **Run the tests**
-If on mac you'll need gradle `brew install gradle`
+If on a mac you'll need gradle
+
+`brew install gradle`
+
+Run the below from within server folder to start the server
+
+`./gradlew run`
+
+Then individually run okhttpkt and ktorkt.
 
 **Background**
 
