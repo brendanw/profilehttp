@@ -1,0 +1,5 @@
+.idea/
+testserver/.gradle/
+clientperf/.gradle/
+clientperf/build/
+testserver/build/
