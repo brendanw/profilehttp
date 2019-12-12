@@ -26,7 +26,16 @@ Then stumbled upon this comment by Roman Elizarov
 
 > If you are using a library that provides asynchronous IO via NIO (like ktor.io for example), then you would not need withContext at all, since all your IO functions will be non-blocking. You need to use Dispatchers.IO only if you have blocking IO functions that you must to use without blocking.
 
-Jesse Wilson suggested performance testing ktor vs okhttp.
+Jesse Wilson suggested performance testing the two clients.
+
+To see where okhttp does blocking network io for http1.1 requests visit
+https://github.com/square/okhttp/blob/master/okhttp/src/main/java/okhttp3/internal/http1/Http1ExchangeCodec.kt
+
+To see where ktor-client manages nio for http1.1 requests visit
+https://github.com/ktorio/ktor/blob/master/ktor-network/jvm/src/io/ktor/network/selector/ActorSelectorManager.kt
+
+A primer on nio
+https://www.hellsoft.se/non-blocking-io/
 
 **Hypothesis 1**
 
