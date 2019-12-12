@@ -1,18 +1,17 @@
 **Initial Results**
 
--1ms is unpopulated data
 
 | Tests | okhttp | ktor numThreads=8 | ktor numThreads=1 |
 | :---         |     :---:      |          :---: |          :---: |
-| client init   | -1ms     | -1ms    | -1ms |
-| init client + 10 status code requests     | 676 ms       | -1ms      | -1ms |
-| pre-initialized client + 10 status code requests | 8ms | -1ms | -1ms |
-| read 1 medium-sized responses from same endpoint | -1ms | -1ms | -1ms |
-| read 10 medium-sized responses from same endpoint | 14ms | -1ms | -1ms |
-| read 100 medium-sized responses from same endpoint | 78ms | -1ms |  -1ms |
-| read 1,000 medium-sized responses from same endpoint | 284ms | -1ms | -1ms |
-| read 10,000 medium-sized responses from same endpoint | 1967ms | -1ms | -1ms |
-| read 100,000 medium-sized responses from same endpoint | -1ms | -1ms | -1ms |
+| client init   |       |      |   |
+| init client + 10 status code requests     | 676 ms       |  199ms      |   |
+| pre-initialized client + 10 status code requests | 8ms | 12ms  |   |
+| read 1 medium-sized responses from same endpoint |   |   |   |
+| read 10 medium-sized responses from same endpoint | 14ms | 39ms  |   |
+| read 100 medium-sized responses from same endpoint | 78ms | 150ms  |    |
+| read 1,000 medium-sized responses from same endpoint | 284ms | Crash  |   |
+| read 10,000 medium-sized responses from same endpoint | 1967ms |   |   |
+| read 100,000 medium-sized responses from same endpoint |   |   |   |
 
 **Run the tests**
 If on mac you'll need gradle `brew install gradle`
