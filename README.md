@@ -4,13 +4,13 @@
 | Tests | okhttp | ktor numThreads=8 | ktor numThreads=1 |
 | :---         |     :---:      |          :---: |          :---: |
 | client init   |       |      |   |
-| init client + 10 status code requests     | 676 ms       |  199ms      |   |
-| pre-initialized client + 10 status code requests | 8ms | 12ms  |   |
+| init client + 10 status code requests     | 676 ms       |  285ms      | 243ms  |
+| pre-initialized client + 10 status code requests | 8ms | 8ms  |  19ms |
 | read 1 medium-sized responses from same endpoint |   |   |   |
-| read 10 medium-sized responses from same endpoint | 14ms | 39ms  |   |
-| read 100 medium-sized responses from same endpoint | 78ms | 150ms  |    |
-| read 1,000 medium-sized responses from same endpoint | 284ms | Crash  |   |
-| read 10,000 medium-sized responses from same endpoint | 1967ms |   |   |
+| read 10 medium-sized responses from same endpoint | 14ms | 50ms  | 3057ms  |
+| read 100 medium-sized responses from same endpoint | 78ms | 153ms  |  2186ms  |
+| read 1,000 medium-sized responses from same endpoint | 284ms | 553ms  | 1587ms  |
+| read 10,000 medium-sized responses from same endpoint | 1967ms | crash  | 8815ms  |
 | read 100,000 medium-sized responses from same endpoint |   |   |   |
 
 **Run the tests**
@@ -18,9 +18,9 @@ If on a mac you'll need gradle
 
 `brew install gradle`
 
-Run the below from within server folder to start the server
+To start the server
 
-`./gradlew run`
+`cd server && ./gradlew run`
 
 Then individually run okhttpkt and ktorkt.
 
