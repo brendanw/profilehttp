@@ -14,6 +14,7 @@
 | read 100,000 medium-sized responses from same endpoint |   |   |   |
 
 **Run the tests**
+
 You'll need gradle to build both the client and server projects:
 
 on mac: `brew install gradle` (see https://brew.sh/ to install homebrew)
@@ -31,6 +32,12 @@ You can run the ktor cio client performance test from within the client director
 Run the okhttp client performance test with
 
 `cd client && ./gradlew -PmainClass=OkhttpKt run`
+
+Alternatively you can just run the shell script
+
+`sh runtest.sh`
+
+For opening the project and running tests within intellij, be sure that there are only two modules `client` and `server`. If you need to add either module, you can do so via "open module settings" => "+" => "new module" and then enter the location of the client or server folder.
 
 **Background**
 
