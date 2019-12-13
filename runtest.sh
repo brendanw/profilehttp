@@ -1,8 +1,6 @@
 #!/bin/bash
 
 cd server
-./gradlew run
-cd ..
-cd client
-#TODO: Run okhttpkt
-#TODO: Run ktorkt
+# Start server
+./gradlew run & cd .. && cd client && ./gradlew -PmainClass=KtorKt run ; ./gradlew -PmainClass=OkhttpKt run ; cd .. && cd server && ./gradlew --stop
+lsof -ti:5003 | xargs kill
