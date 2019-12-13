@@ -13,7 +13,7 @@
 | read 10,000 medium-sized responses from same endpoint | 1967ms | crash  | 8815ms  |
 | read 100,000 medium-sized responses from same endpoint |   |   |   |
 
-**Run the tests**
+## Run the tests
 
 You'll need gradle to build both the client and server projects:
 
@@ -39,7 +39,7 @@ Alternatively you can just run the shell script
 
 For opening the project and running tests within intellij, be sure that there are only two modules `client` and `server`. If you need to add either module, you can do so via "open module settings" => "+" => "new module" and then enter the location of the client or server folder.
 
-**Background**
+## Background
 
 The goal is to reduce thread usage in the typical android app. A typical android app has 50-100 threads allocated at a given time. If yes, can we see performance improvements? 
 
@@ -64,19 +64,19 @@ https://github.com/ktorio/ktor/blob/master/ktor-network/jvm/src/io/ktor/network/
 A primer on nio
 https://www.hellsoft.se/non-blocking-io/
 
-**Hypothesis 1**
+## Hypothesis 1
 
 Using the ktor client configured to a single thread should have similar performance to using okhttp launching a thread for each request.
 
-**Hypothesis 2**
+## Hypothesis 2
 
 The ktor client performance should improve as we increase the number of threads it is configured to use.
 
-**Hypothesis 3**
+## Hypothesis 3
 
 The number of running threads -- ceteris paribus -- should be lower in an application using the ktor client.
 
-**Flaws**
+## Flaws
 
 -The mechanism for determining when 10 concurrent requests are complete is different in each experiment. The performance of CountDownLatch vs List<Deferred>:awaitAll() could have a significant impact. We should try to find a way to use the same mechanism for each test set.
 
