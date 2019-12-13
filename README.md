@@ -14,15 +14,23 @@
 | read 100,000 medium-sized responses from same endpoint |   |   |   |
 
 **Run the tests**
-If on a mac you'll need gradle
+You'll need gradle to build both the client and server projects:
 
-`brew install gradle`
+on mac: `brew install gradle` (see https://brew.sh/ to install homebrew)
 
-To start the server
+on windows: `choco install gradle` (see https://chocolatey.org/ to install chocolatey)
+
+Before running the client tests, be sure to start up the server
 
 `cd server && ./gradlew run`
 
-Then individually run okhttpkt and ktorkt.
+You can run the ktor cio client performance test from within the client directory with
+
+`cd client && ./gradlew -PmainClass=KtorKt run`
+
+Run the okhttp client performance test with
+
+`cd client && ./gradlew -PmainClass=OkhttpKt run`
 
 **Background**
 
