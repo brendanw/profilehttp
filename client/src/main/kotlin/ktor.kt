@@ -51,7 +51,7 @@ private suspend fun runSuite(numThreads: Int) {
 
 private suspend fun mediumResponse(numRequests: Int, numThreads: Int = 3, reuseClient: Boolean = true) {
   println("medium-length response (n=$numRequests) START")
-  val testClient = if (reuseClient) getClient(numThreads = numThreads) else reusableClient
+  val testClient = if (reuseClient) reusableClient else getClient(numThreads = numThreads)
   delay(1000) // Allow client to warmup
   coroutineScope {
     val time = measureTimeMillis {
